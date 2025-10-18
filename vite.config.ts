@@ -30,6 +30,12 @@ export default defineConfig(({ mode }) => {
           },
         },
         chunkSizeWarningLimit: 1000,
+        // Optimize images and assets
+        assetsInlineLimit: 4096, // Inline assets smaller than 4kb
       },
+      // Optimize dependencies
+      optimizeDeps: {
+        include: ['react', 'react-dom', 'framer-motion']
+      }
     };
 });
