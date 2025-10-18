@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
 // Staggered animation for lists
@@ -136,10 +137,10 @@ export const AnimatedCard: React.FC<{
           ease: "easeOut",
           delay
         }
-      }
+      },
+      rest: cardHover.rest
     }}
     whileHover={cardHover.hover}
-    initial="rest"
     animate="rest"
     className={className}
   >

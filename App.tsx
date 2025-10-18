@@ -8,6 +8,7 @@ import Gallery from './components/Gallery';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import PerformanceMonitor from './components/PerformanceMonitor';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeIn } from './components/AnimationUtils';
 
@@ -23,6 +24,9 @@ const App: React.FC = () => {
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  // Check if we're in development mode
+  const isDev = process.env.NODE_ENV === 'development';
 
   return (
     <div className="bg-white text-brand-dark font-sans">
@@ -47,6 +51,8 @@ const App: React.FC = () => {
         </div>
       </main>
       <Footer />
+      {/* Show performance monitor only in development */}
+      {isDev && <PerformanceMonitor />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRightIcon } from './Icons';
 import { motion } from 'framer-motion';
 
@@ -7,18 +7,33 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ scrollToProjects }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section 
       className="relative text-white min-h-screen flex flex-col justify-center items-center text-center overflow-hidden"
     >
       {/* Background Image */}
       <motion.div 
-        className="absolute inset-0 bg-cover bg-center h-full w-full"
+        className={`absolute inset-0 bg-cover bg-center h-full w-full transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         style={{ backgroundImage: "url('/WhatsApp Image 2025-10-16 at 23.52.11_4d4c9a68.jpg')" }}
         initial={{ scale: 1 }}
         animate={{ scale: 1.05 }}
         transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
       ></motion.div>
+      
+      {/* Loading placeholder */}
+      {!imageLoaded && (
+        <div className="absolute inset-0 bg-gray-300 animate-pulse"></div>
+      )}
+      
+      {/* Preload image */}
+      <img 
+        src="/WhatsApp Image 2025-10-16 at 23.52.11_4d4c9a68.jpg" 
+        alt="Background" 
+        onLoad={() => setImageLoaded(true)}
+        style={{ display: 'none' }}
+      />
 
       {/* Content */}
       <div className="relative container mx-auto px-6 z-10">
